@@ -10,9 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 import dj_database_url
 
+if os.path.exists('env.py'):
+    import env
 development = os.environ.get('DEVELOPMENT', False)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -86,7 +89,7 @@ if development:
     }
 else:
     DATABASES = {
-        'default': dj_database_url.parse(os.environ.get(DATABASE_URL))
+        'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
 
 # Password validation
